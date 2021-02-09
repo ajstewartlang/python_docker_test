@@ -7,3 +7,5 @@ and then use docker run as follows:
 docker run -p 8888:8888 my_python_image
 
 The version of numpy in the container does not match the version I specified in the environment.yml
+
+I suspect the issue is that the right environment isn't being activated - but I think I've done that with the CMD line in the Dockerfile...
