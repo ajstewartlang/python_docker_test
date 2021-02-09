@@ -1,0 +1,9 @@
+When I build my image with:
+
+docker build -t my_python_image .
+
+and then use docker run as follows:
+
+docker run -p 8888:8888 my_python_image
+
+The version of numpy in the container does not match the version I specified in the environment.yml
