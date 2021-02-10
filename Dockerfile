@@ -15,4 +15,5 @@ SHELL ["conda", "run", "-n", "myenv", "/bin/bash", "-c"]
 
 # The code to run when container is started:
 COPY test.ipynb .
+ENTRYPOINT ["conda", "run", "--no-capture-output", "-n", "myenv"]
 ENTRYPOINT ["jupyter", "notebook", "--port=8888", "--no-browser", "--ip=0.0.0.0", "--allow-root"]
