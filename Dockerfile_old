@@ -1,13 +1,13 @@
 FROM continuumio/miniconda3
 FROM jupyter/datascience-notebook
+#FROM jupyter/base-notebook
 
 WORKDIR /app
 
+# Create the environment:
+#ENV PATH="/root/miniconda3/bin:$PATH"
 COPY environment.yml .
 RUN conda env create -f environment.yml
-
-COPY test.py .
-ENTRYPOINT ["conda", "run", "--no-capture-output", "-n", "myenv", "python", "test.py"]
 
 #EXPOSE 8888
 #RUN /bin/bash -c "conda env create -f environment.yml" && /bin/bash -c "source activate myenv" 
@@ -19,10 +19,10 @@ ENTRYPOINT ["conda", "run", "--no-capture-output", "-n", "myenv", "python", "tes
 #SHELL ["conda", "run", "-n", "myenv", "/bin/bash", "-c"]
    
 # The code to run when container is started:
-#COPY test.ipynb .
-#COPY test.py .
+COPY test.ipynb .
+COPY test.py .
 #ENTRYPOINT ["conda", "run", "--no-capture-output", "-n", "myenv"]
-#ENTRYPOINT ["jupyter", "notebook", "--port=8888", "--no-browser", "--ip=0.0.0.0", "--allow-root"]
+ENTRYPOINT ["jupyter", "notebook", "--port=8888", "--no-browser", "--ip=0.0.0.0", "--allow-root"]
 
 # docker build -t my_python_image .
 # docker run -it --entrypoint /bin/bash my_python_image

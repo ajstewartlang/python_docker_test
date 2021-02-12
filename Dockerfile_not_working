@@ -1,13 +1,24 @@
 FROM continuumio/miniconda3
 FROM jupyter/datascience-notebook
+#FROM jupyter/base-notebook
 
 WORKDIR /app
 
+# Create the environment:
+#ENV PATH="/root/miniconda3/bin:$PATH"
 COPY environment.yml .
-RUN conda env create -f environment.yml
+#RUN conda env create -f environment.yml
+
+#SHELL ["conda", "run", "-n", "myenv", "/bin/bash", "-c"]
 
 COPY test.py .
-ENTRYPOINT ["conda", "run", "--no-capture-output", "-n", "myenv", "python", "test.py"]
+COPY test.ipynb .
+COPY commands.sh /scripts/commands.sh
+USER root
+RUN ["chmod", "+x", "/scripts/commands.sh"]
+ENTRYPOINT ["/scripts/commands.sh"]
+
+#ENTRYPOINT ["conda", "run", "--no-capture-output", "-n", "myenv", "python", "test.py"]
 
 #EXPOSE 8888
 #RUN /bin/bash -c "conda env create -f environment.yml" && /bin/bash -c "source activate myenv" 
