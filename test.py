@@ -5,5 +5,7 @@
 
 
 import numpy as np
-print(np.__version__)
-
+import sys
+print("This is Python version", sys.version)
+print("This is NumPy version number", np.__version__)
+print("Exiting...")
