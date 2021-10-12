@@ -6,4 +6,4 @@ then run as follows:
 
 `docker run my_python_image`
 
-The version of `numpy` in the container matches the version I specified in the `environment.yml`
+The versions of `Python` and `NumPy` in the container matches the versions I specified in the `environment.yml`
